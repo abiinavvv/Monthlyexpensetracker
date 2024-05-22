@@ -1,0 +1,120 @@
+{% extends "layout_member.html" %}
+{%block content%}
+
+<div class="row" style="margin-bottom:0;">
+	<div class="col s12 center">
+		<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">INDIVIDUAL SPECIAL EXPENSES</h5>
+	</div>
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#special-expense">SPECIAL EXPENSES</a></li>
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#add-expenses">ADD SPECIAL EXPENSES</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="add-expenses">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<div class="card-panel grey lighten-2" style="background-image: url('https://img.freepik.com/free-photo/blue-bokeh-textured-plain-product-background_53876-102475.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+				<div class="row">
+					<div class="col s12 center-align">
+						<h5 class='cyan-text text-darken-4' style="text-decoration: underline; font-weight: bold;">ADD SPECIAL EXPENSE</h5>
+					</div>
+					<form action="{{url_for('indSpecialExpenseReg')}}" method="post" enctype="multipart/form-data">
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">edit</i>
+							<input type="text" name="name" id='exp-name' class="validate" required>
+							<label for="exp-name">Name</label>
+						</div>
+						<div class="input-field col s12">
+				        	<i class="material-icons prefix">calendar_month</i>
+				        	<input id="exp-date" type="text" class="validate datepicker dp-exp" name='dueDate' required>
+				        	<label for="exp-date">Due Date</label>
+				        </div>
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">123</i>
+							<input type="text" name="amount" id='exp-amount' class="validate" required>
+							<label for="exp-amount">Amount</label>
+						</div>
+						<div class="col s12 center-align">
+							<input type="submit" name="" value='ADD EXPENSE' class="btn cyan darken-4">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="special-expense">
+	<div class="row">
+		{% for i in indSpecialExpense %}
+			<div class="card-panel col s5" style="margin-left: 5rem;">
+				<div class="row" style="margin-bottom:.6rem;">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{url_for('static', filename='images/expenses.png')}}" style="width: 3.5rem; height: 3.5rem;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-left: .5rem;" class="cyan-text  text-darken-4">{{indSpecialExpense[i]['name']}}</p>
+					</div>
+					{% if indSpecialExpense[i]['payStatus'] == 'not_paid' %}
+						<div class="col s12">
+							<p style="text-transform: capitalize; margin-bottom: 0; font-weight: bold;">Due Date : <span class="red-text">{{indSpecialExpense[i]['dueDate']}}, {{indSpecialExpense[i]['dueStatus']}}</span></p>
+						</div>
+						<div class="col s12">
+							<p style="text-transform: capitalize; margin-top: 0; font-weight: bold;">Amount : <span class="red-text">{{indSpecialExpense[i]['amount']}}/-</span></p>
+						</div>
+						<div class="col s12" style="padding: 0">
+							<div class="divider"></div>
+						</div>
+						<div class="col s4" style="margin-top:.5rem;">
+							<a href=""><span class="orange-text">EDIT</span></a>
+						</div>
+						<div class="col s4 center" style="margin-top:.5rem;">
+							<a href=""><span class="orange-text">DELETE</span></a>
+						</div>
+						<div class="col s4 right-align" style="margin-top:.5rem;">
+							<a href="#modal-pay-expense-{{i}}" class="modal-trigger"><span class="orange-text">PAY EXPENSE</span></a>
+						</div>
+					{% elif indSpecialExpense[i]['payStatus'] == 'paid' %}
+						<div class="col s12">
+							<p style="text-transform: capitalize; margin-bottom: 0; font-weight: bold;">Paid Date : <span class="red-text">{{indSpecialExpense[i]['paidDate']}}</span></p>
+						</div>
+						<div class="col s12">
+							<p style="text-transform: capitalize; margin-top: 0; font-weight: bold;">Paid Amount : <span class="red-text">{{indSpecialExpense[i]['paidAmount']}}/-</span></p>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% for i in indSpecialExpense %}
+	<div id="modal-pay-expense-{{i}}" class="modal">
+		<form action="{{url_for('payIndSpecialExpense')}}" method="post">
+		    <div class="modal-content">
+		      <h4 class="teal-text center" style="text-transform: uppercase;">PAY EXPENSE</h4>
+		      	<div class="input-field col s12">
+		        	<i class="material-icons prefix">calendar_month</i>
+		        	<input id="i-date" type="text" class="validate datepicker dp-exp" name='transDate' required value="{{currentDate}}">
+		        	<label for="i-date">Transaction Date</label>
+		        </div>
+		        <div class="input-field">
+			        <i class="material-icons prefix">123</i>
+			        <input id="i_amount" type="number" class="validate" name='amount' value="{{indSpecialExpense[i]['amount']}}" required>
+			        <label for="i_amount">Amount</label>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+	    		<input type="hidden" name="cat" value="expense">
+	    		<input type="hidden" name="type" value="individual">
+	    		<input type="hidden" name="expID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat teal-text">PAY EXPENSE</button>
+		    </div>
+		</form>
+	</div>
+{% endfor %}
+
+{% endblock %}

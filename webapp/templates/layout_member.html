@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Member - Monthly Expense Tracker</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+</head>
+<body style="background-image: url('https://as1.ftcdn.net/v2/jpg/01/44/65/84/1000_F_144658455_X4d6WbOSzKud3v3WuKhuSzOioOYUEvKb.jpg'); background-repeat: no-repeat; background-size: cover;">
+	<nav>
+		<div class="nav-wrapper cyan darken-4">
+	      <a href="{{url_for('home')}}" class="brand-logo brand-title-l hide-on-med-and-down">MONTHLY EXPENSE TRACKER</a>
+	      <a href="{{url_for('home')}}" class="brand-logo brand-title-m hide-on-large-only">MONTHLY EXPENSE TRACKER</a>
+	      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+		    <ul id="nav-mobile" class="right  hide-on-med-and-down">
+		    	<li>
+		        	<a href="{{url_for('memberAccounts')}}" class="nav-item">
+		        		<i class="material-icons left white-text">account_balance_wallet</i>
+		        		<span class="hide-on-small-only">Accounts</span>
+		        	</a>
+		        </li>
+		    	<li>
+		    		<a class="dropdown-trigger nav-item product" href="#!" data-target="dropdown1">Expense<i class="material-icons right white-text">arrow_drop_down</i></a>
+		    	</li>
+		    	<li>
+		    		<a class="dropdown-trigger nav-item product" href="#!" data-target="dropdown3">Family<i class="material-icons right white-text">arrow_drop_down</i></a>
+		    	</li>
+		        <li>
+		        	<a href="" class="nav-item dropdown-trigger profile" data-target='dropdown2'>
+		        		<i class="material-icons right white-text" style="font-size: 3rem; margin-left: .5rem;">account_circle</i>
+		        		<span class="hide-on-small-only" style="text-transform: capitalize;">Hi {{memberDetails['name']}}!</span>
+		        	</a>
+		        </li>
+		    </ul>
+	    </div>
+	</nav>
+
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a class="cyan-text text-darken-4" href="{{url_for('indFixedExpense')}}"><i class="material-icons">payment</i>Fixed Expenses</a></li>
+	  <li><a class="cyan-text text-darken-4" href="{{url_for('indSpecialExpense')}}"><i class="material-icons">payment</i>Special Expenses</a></li>
+	  <li><a class="cyan-text text-darken-4" href="{{url_for('indOtherExpense')}}"><i class="material-icons">payment</i>Other Expenses</a></li>
+	</ul>
+
+	<ul id="dropdown3" class="dropdown-content">
+		<li><a class="cyan-text text-darken-4" href="{{url_for('memberFamilyInfo')}}"><i class="material-icons">groups</i>Family Info</a></li>
+		<li><a class="cyan-text text-darken-4" href="{{url_for('famFixedExpense')}}"><i class="material-icons">payment</i>Fixed Expenses</a></li>
+		<li><a class="cyan-text text-darken-4" href="{{url_for('famSpecialExpense')}}"><i class="material-icons">payment</i>Special Expenses</a></li>
+		<li><a class="cyan-text text-darken-4" href="{{url_for('famOtherExpense')}}"><i class="material-icons">payment</i>Other Expenses</a></li>
+	</ul>
+
+	<ul id="dropdown2" class="dropdown-content">
+	  <li><a href="{{url_for('memberProfile')}}" class="cyan-text text-darken-4"><i class="material-icons">account_circle</i>Profile</a></li>
+	  <li><a href="{{url_for('logout')}}" class="cyan-text text-darken-4"><i class="material-icons">logout</i>Logout</a></li>
+	</ul>
+
+	<ul class="sidenav" id="mobile-demo">
+		<li>
+			<div class="user-view">
+	            <div class="background">
+	            	<img src="{{url_for('static', filename='images/user-bg.jpg')}}">
+	            </div>
+			    <a href="{{url_for('memberProfile')}}">
+			    	<img class="circle" src="{{memberDetails['imgUrl']}}">
+			    </a>
+			    <a href="{{url_for('memberProfile')}}">
+			    	<span class="white-text name" style="text-transform: capitalize;">{{memberDetails['name']}}</span>
+			    </a>
+			    <a href="{{url_for('familyProfile')}}">
+			    	<span class="white-text email">{{memberDetails['email']}}</span>
+			    </a>
+            </div>
+      	</li>
+	    <li><a href="{{url_for('home')}}">Home</a></li>
+	    <li><a href="{{url_for('memberProfile')}}">Profile</a></li>
+	    <li><a href="{{url_for('memberAccounts')}}">Accounts</a></li>
+	    <li><a href="{{url_for('indFixedExpense')}}">Fixed Expense</a></li>
+	    <li><a href="{{url_for('indSpecialExpense')}}">Special Expense</a></li>
+	    <li><a href="{{url_for('indOtherExpense')}}">Other Expense</a></li>
+	    <li><a href="{{url_for('memberFamilyInfo')}}">Family Info</a></li>
+	    <li><a href="{{url_for('famFixedExpense')}}">Family Fixed Expense</a></li>
+	    <li><a href="{{url_for('famSpecialExpense')}}">Family Special Expense</a></li>
+	    <li><a href="{{url_for('famOtherExpense')}}">Family Other Expense</a></li>
+	    <li><a href="{{url_for('logout')}}">Logout</a></li>
+	</ul>
+	{% block content %}
+	{%endblock%}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.sidenav');
+	    var instances = M.Sidenav.init(elems);
+	  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.product');
+		    var options={coverTrigger:false,constrainWidth:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.profile');
+		    var options={coverTrigger:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	 <script type="text/javascript">
+	  	 document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.collapsible');
+	    var instances = M.Collapsible.init(elems);
+	  });
+
+	  </script>
+
+	  <script type="text/javascript">
+	  	document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(elems);
+	  });
+	  </script>
+
+	  	<script type="text/javascript">
+	      	var el = document.querySelector('.tabs');
+	      	var instance = M.Tabs.init(el);
+	    </script>
+
+	    <script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.slider');
+		    var instances = M.Slider.init(elems);
+		  });
+		</script>
+		<script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.modal');
+		    var instances = M.Modal.init(elems);
+		  });
+		</script>
+
+		<script type="text/javascript">
+	    	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.dp-reg');
+		    var options = {yearRange:[1950,2023], format:"dd/mm/yyyy"}
+		    var instances = M.Datepicker.init(elems, options);
+		  });
+	    </script>
+
+	    <script type="text/javascript">
+	    	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.dp-exp');
+		    var options = {yearRange:[2023,2033], format:"dd/mm/yyyy"}
+		    var instances = M.Datepicker.init(elems, options);
+		  });
+	    </script>
+</body>
+</html>

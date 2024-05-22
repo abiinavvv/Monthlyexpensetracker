@@ -1,0 +1,160 @@
+{% extends "layout_member.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom:0; margin-top: .1rem;">
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#member-info">INFO</a></li>
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#member-accounts">ACCOUNTS</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="member-info">
+	<div class="row">
+		<div class="col s8 offset-s2 card-panel grey lighten-2" style="margin-top: 1rem; padding: 1rem;">
+			<div class="row">
+				<div class="col s12 center">
+					<img src="{{familyMemberDetails['imgUrl']}}" class="circle" style="width: 6rem; height: 6rem;">
+				</div>
+				<div class="col s12 center">
+					<h5 class="teal-text" style="font-weight: bold; text-transform: capitalize; margin-top: .1rem; margin-bottom: 0">{{familyMemberDetails['name']}}</h5>
+					<p class="blue-grey-text text-lighten-1" style="margin: 0;">{{familyMemberDetails['email']}}</p>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Name</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Gender</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['gender']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Date of Birth</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['dob']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Relation</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['relation']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Email</span>
+					<span class="right" style="font-weight:bold;">{{familyMemberDetails['email']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Mobile Number</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['mobileNumber']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Income</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['income']}}/-</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Transfer Income</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['transferIncome']}}/-</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Transfer Expense</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['transferExpense']}}/-</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Expense</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['expense']}}/-</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Balance Amount</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyMemberDetails['balanceAmount']}}/-</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="member-accounts">
+	<div class="row">
+		<div class="card-panel col s8 offset-s2">
+			<div class="row">
+				<div class="col s12 center">
+					<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">ACCOUNTS</h5>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">vertical_align_bottom</i>Income</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyMemberDetails['income']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">sync_alt</i>Transfer Income</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyMemberDetails['transferIncome']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">sync_alt</i>Transfer Expense</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyMemberDetails['transferExpense']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">upgrade</i>Expense</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyMemberDetails['expense']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">account_balance_wallet</i>Balance Amount</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyMemberDetails['balanceAmount']}}/-</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

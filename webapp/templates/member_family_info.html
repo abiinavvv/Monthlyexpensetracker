@@ -1,0 +1,154 @@
+{% extends "layout_member.html" %}
+{%block content%}
+
+<div class="row" style="margin-bottom:0; margin-top: .2rem;">
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s3"><a class="cyan-text text-darken-4" href="#family-members">FAMILY MEMBERS</a></li>
+			<li class="tab col s3"><a class="cyan-text text-darken-4" href="#family-accounts">FAMILY ACCOUNTS</a></li>
+			<li class="tab col s3"><a class="cyan-text text-darken-4" href="#family-transactions">FAMILY EXPENSES</a></li>
+			<li class="tab col s3"><a class="cyan-text text-darken-4" href="#family-info">FAMILY INFO</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="family-accounts">
+	<div class="row">
+		<div class="card-panel col s8 offset-s2" style="background-image: url('https://img.freepik.com/free-photo/blue-bokeh-textured-plain-product-background_53876-102475.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+			<div class="row">
+				<div class="col s12 center">
+					<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">FAMILY ACCOUNTS</h5>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">vertical_align_bottom</i>Income</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyDetails['income']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">upgrade</i>Expense</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyDetails['expense']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">account_balance_wallet</i>Balance Amount</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{familyDetails['balanceAmount']}}/-</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="family-transactions">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Paid By</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in famExpense %}
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="text-transform: capitalize;">{{famExpense[i]['transDate']}}</td>
+							{% if famExpense[i]['expID'] == 'others' %}
+								<td style="text-transform: capitalize;">Other Expense - {{famExpense[i]['name']}}</td>
+							{% endif %}
+							<td style="text-transform: capitalize;">{{famExpense[i]['memberDetails']['name']}}</td>
+							<td style="text-transform: capitalize;">{{famExpense[i]['amount']}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="family-members">
+	<div class="row">
+		<div class="col s8 offset-s2" >
+			<div class="row">
+				{% for i in memberList %}
+		    		<div class="col l3 card hide-on-med-and-down" style="margin:2rem; padding:0;">
+				        <div class="card-image">
+				        	<img src="{{memberList[i]['imgUrl']}}" style="width:100%; height: 12rem;">
+				        </div>
+			          	<div class="card-content" style="padding: .5rem">
+			            	<p class="cyan-text text-darken-4" style="font-weight: bold; margin:0; text-transform: capitalize;">{{memberList[i]['name']}}</p>
+			            	<p style="font-weight: bold; text-transform: capitalize;">
+			            		<span>Relation : </span>
+			            		<span class="cyan-text text-darken-4">{{memberList[i]['relation']}}</span>
+			            	</p>
+			            	<p style="font-weight: bold; text-transform: capitalize;">
+			            		<span>Balance : </span>
+			            		<span class="cyan-text text-darken-4">{{memberList[i]['balanceAmount']}}/-</span>
+			            	</p>
+			          	</div>
+			          	<div class="card-action" style="padding-left : .5rem; padding-right : .5rem;">
+			            	<a href="{{url_for('familyMemberDetails', memberID=i)}}">VIEW PROFILE</a>
+			          	</div>
+		        	</div>
+		        {% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="family-info">
+	<div class="row">
+		<div class="col s8 offset-s2 card-panel grey lighten-2" style="background-image: url('https://img.freepik.com/free-photo/blue-bokeh-textured-plain-product-background_53876-102475.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+			<div class="row">
+				<div class="col s12 center">
+					<img src="{{url_for('static', filename='images/family.png')}}" class="circle" style="width: 6rem; height: 6rem;">
+				</div>
+				<div class="col s12 center">
+					<h5 class="teal-text" style="font-weight: bold; text-transform: capitalize; margin-top: .1rem; margin-bottom: 0">{{familyDetails['name']}}</h5>
+					<p class="blue-grey-text text-lighten-1" style="margin: 0;">{{familyDetails['email']}}</p>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Name</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyDetails['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Email</span>
+					<span class="right" style="font-weight:bold;">{{familyDetails['email']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">City</span>
+					<span class="right" style="font-weight:bold;">{{familyDetails['city']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Address</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{familyDetails['address']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

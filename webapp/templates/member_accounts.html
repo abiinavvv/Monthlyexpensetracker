@@ -1,0 +1,214 @@
+{% extends "layout_member.html" %}
+{%block content%}
+
+<div class="row" style="margin-bottom:0; margin-top: .1rem;">
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s4"><a class="cyan-text text-darken-4" href="#account-details">ACCOUNTS</a></li>
+			<li class="tab col s4"><a class="cyan-text text-darken-4" href="#transfer-income">TRANSFER INCOME</a></li>
+			<li class="tab col s4"><a class="cyan-text text-darken-4" href="#trans-history">TRANSACTIONS</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="account-details">
+	<div class="row">
+		<div class="card-panel col s5 offset-s2" style="background-image: url('https://img.freepik.com/premium-photo/close-up-model-home-money-white-table-green-bokeh-background-collect-money-home-expense-account-saving-investments-concept-flat-lay_164138-1020.jpg'); background-repeat: no-repeat; background-size: 1000px 400px; margin-left: 30em;">
+			<div class="row">
+				<div class="col s10 center">
+					<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">ACCOUNTS</h5>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">vertical_align_bottom</i>Income</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{memberDetails['income']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">sync_alt</i>Transfer Income</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{memberDetails['transferIncome']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">sync_alt</i>Transfer Expense</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{memberDetails['transferExpense']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">upgrade</i>Expense</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{memberDetails['expense']}}/-</p>
+				</div>
+				<div class="col s12">
+					<div class="divider"></div>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;"><i class="material-icons left">account_balance_wallet</i>Balance Amount</p>
+				</div>
+				<div class="col s6">
+					<p style="font-weight: bold;" class="right">{{memberDetails['balanceAmount']}}/-</p>
+				</div>
+				<div class="col s12 center">
+					<a class="btn cyan darken-4 modal-trigger" href="#modal-add-income">ADD INCOME</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="transfer-income">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Relation</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in memberList %}
+						{% if i != memberID %}
+							<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+								<td style="padding-top:.5rem; padding-bottom: .5rem;"><img src="{{memberList[i]['imgUrl']}}" style="width: 4.5rem; height: 4.5rem; border-radius: 50%;"></td>
+								<td style="text-transform: capitalize; padding-top:.5rem; padding-bottom: .5rem;">{{memberList[i]['name']}}</td>
+								<td style="text-transform: capitalize; padding-top:.5rem; padding-bottom: .5rem;">{{memberList[i]['relation']}}</td>
+								<td style="padding-top:.5rem; padding-bottom: .5rem;">
+									<a href="#modal-transfer-income-{{i}}" class="btn teal modal-trigger"><i class="material-icons white-text left">sync_alt</i>TRANSFER</a>
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="trans-history">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Category</th>
+						<th>Expense Type</th>
+						<th>Description</th>
+						<th>ID</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in transactionList %}
+						{% if transactionList[i]['cat'] == 'income' %}
+							<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+								<td style="text-transform: capitalize;">{{transactionList[i]['transDate']}}</td>
+								<td style="text-transform: capitalize;">{{transactionList[i]['cat']}}</td>
+								<td style="text-transform: capitalize;">{{transactionList[i]['type']}}</td>
+								{% if transactionList[i]['type'] == 'normal' %}
+									<td style="text-transform: capitalize;">Add Income</td>
+									<td> - </td>
+								{% elif transactionList[i]['type'] == 'transfer' %}
+									<td style="text-transform: capitalize;">Income Transfer - {{transactionList[i]['recepientDetails']['name']}}</td>
+									<td> - </td>
+								{% endif %}
+								<td style="text-transform: capitalize;">{{transactionList[i]['amount']}}</td>
+							</tr>
+						{% elif transactionList[i]['cat'] == 'expense' %}
+							<tr style="font-weight: 500;" class="red-text">
+								<td style="text-transform: capitalize;">{{transactionList[i]['transDate']}}</td>
+								<td style="text-transform: capitalize;">{{transactionList[i]['cat']}}</td>
+								<td style="text-transform: capitalize;">{{transactionList[i]['type']}}</td>
+								{% if transactionList[i]['type'] == 'transfer' %}
+									<td style="text-transform: capitalize;">Income Transfer - {{transactionList[i]['recepientDetails']['name']}}</td>
+									<td> - </td>
+								{% elif transactionList[i]['type'] == 'individual' %}
+									{% if transactionList[i]['expID'] == 'others' %}
+										<td style="text-transform: capitalize;">Other Expense - {{transactionList[i]['name']}}</td>
+										<td> - </td>
+									{% else %}
+										<td style="text-transform: capitalize;">{{transactionList[i]['expenseType']}} Expense - {{transactionList[i]['name']}}</td>
+										<td> - </td>
+									{% endif %}
+								{% elif transactionList[i]['type'] == 'family' %}
+									{% if transactionList[i]['expID'] == 'others' %}
+										<td style="text-transform: capitalize;">Other Expense - {{transactionList[i]['name']}}</td>
+										<td> - </td>
+									{% endif %}
+								{% endif %}
+								<td style="text-transform: capitalize;">{{transactionList[i]['amount']}}</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div id="modal-add-income" class="modal" style="background-image: url('https://img.freepik.com/free-photo/financial-freedom-still-life-arrangement-with-copy-space_23-2149122650.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+	<form action="{{url_for('incomeTransaction')}}" method="post">
+	    <div class="modal-content">
+	      <h4 class="teal-text center" style="text-transform: uppercase;">ADD INCOME</h4>
+	      	<div class="input-field col s12">
+	        	<i class="material-icons prefix">calendar_month</i>
+	        	<input id="i-date" type="text" class="validate datepicker dp-exp" name='transDate' required value="{{currentDate}}">
+	        	<label for="i-date">Transaction Date</label>
+	        </div>
+	        <div class="input-field">
+		        <i class="material-icons prefix">123</i>
+		        <input id="i_amount" type="number" class="validate" name='amount' required>
+		        <label for="i_amount">Amount</label>
+	        </div>
+	    </div>
+	    <div class="modal-footer">
+    		<input type="hidden" name="cat" value="income">
+    		<input type="hidden" name="type" value="normal">
+    		<input type="hidden" name="expID" value="nil">
+    		<button type="submit" class="waves-effect waves-green btn-flat teal-text">ADD INCOME</button>
+	    </div>
+	</form>
+</div>
+
+{% for i in memberList  %}
+	<div id="modal-transfer-income-{{i}}" class="modal" style="background-image: url('https://content.pymnts.com/wp-content/uploads/2016/12/worldremitandxpressmoney.jpg'); background-repeat: no-repeat; background-size: 1000px 400px; margin-left: 30em;">
+		<form action="{{url_for('incomeTransaction')}}" method="post">
+		    <div class="modal-content">
+		      <h4 class="teal-text center" style="text-transform: uppercase;">TRANSFER INCOME</h4>
+		      	<div class="input-field col s12">
+		        	<i class="material-icons prefix">calendar_month</i>
+		        	<input id="t-date" type="text" class="validate datepicker dp-exp" name='transDate' required value="{{currentDate}}">
+		        	<label for="t-date">Transaction Date</label>
+		        </div>
+		        <div class="input-field">
+			        <i class="material-icons prefix">123</i>
+			        <input id="t_amount" type="number" class="validate" name='amount' required>
+			        <label for="t_amount">Amount</label>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+	    		<input type="hidden" name="cat" value="expense">
+	    		<input type="hidden" name="type" value="transfer">
+	    		<input type="hidden" name="expID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat teal-text">TRANSFER</button>
+		    </div>
+		</form>
+	</div>
+{% endfor %}
+
+{% endblock %}

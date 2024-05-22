@@ -1,0 +1,78 @@
+{% extends "layout_member.html" %}
+{%block content%}
+
+<div class="row" style="margin-bottom:0;">
+	<div class="col s12 center">
+		<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">INDIVIDUAL OTHER EXPENSES</h5>
+	</div>
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#add-expenses">ADD OTHER EXPENSES</a></li>
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#other-expense">OTHER EXPENSES</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="add-expenses">
+	<div class="row">
+		<div class="col s8 offset-s2" >
+			<div class="card-panel grey lighten-2" style="background-image: url('https://img.freepik.com/free-photo/blue-bokeh-textured-plain-product-background_53876-102475.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+				<div class="row">
+					<div class="col s12 center-align">
+						<h5 class='cyan-text text-darken-4' style="text-decoration: underline; font-weight: bold;">ADD OTHER EXPENSE</h5>
+					</div>
+					<form action="{{url_for('addIndOtherExpense')}}" method="post" enctype="multipart/form-data">
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">edit</i>
+							<input type="text" name="name" id='exp-name' class="validate" required>
+							<label for="exp-name">Name</label>
+						</div>
+						<div class="input-field col s12">
+				        	<i class="material-icons prefix">calendar_month</i>
+				        	<input id="exp-date" type="text" class="validate datepicker dp-exp" name='transDate' required>
+				        	<label for="exp-date">Paid Date</label>
+				        </div>
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">123</i>
+							<input type="text" name="amount" id='exp-amount' class="validate" required>
+							<label for="exp-amount">Amount</label>
+						</div>
+						<div class="col s12 center-align">
+							<input type="hidden" name="cat" value="expense">
+				    		<input type="hidden" name="type" value="individual">
+				    		<input type="hidden" name="expID" value="others">
+							<input type="submit" name="" value='ADD EXPENSE' class="btn cyan darken-4">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="other-expense">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in indOtherExpense %}
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="text-transform: capitalize;">{{indOtherExpense[i]['transDate']}}</td>
+							<td style="text-transform: capitalize;">{{indOtherExpense[i]['name']}}</td>
+							<td style="text-transform: capitalize;">{{indOtherExpense[i]['amount']}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

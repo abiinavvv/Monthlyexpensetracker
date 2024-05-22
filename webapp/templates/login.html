@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Monthly Expense Tracker</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	<script type="text/javascript">
+				function matchPassword() 
+{  
+  var pw1 = document.forms["form1"]["password"].value;
+  var pw2 = document.forms["form1"]["password1"].value;
+
+    if(pw1 != pw2)  
+  {   
+    alert("Password do not match");  
+    return false;
+  } else {  
+    alert("Success");  
+    return true;
+  }  
+}  
+
+	</script>
+</head>
+<body style="background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwcIBw0ICA0HBwgHBwoHBwcHBw8ICQgKIBEiFhURExMYHSggGBolGx8fITEhJSkrLi4uFx8zODMsNygtLjcBCgoKDQ0NDg0NDisZFRkrNys3NysrKysrNysrKysrKy0tKysrKysrLSsrKysrLSsrKysrLSsrKysrKysrKysrN//AABEIAKgBLAMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAACAwEABwX/xAAXEAEBAQEAAAAAAAAAAAAAAAABAAIR/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAECBQQDBv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A+oMho5ag32fqVssxoDUywWGY0RmMVcZjQGoNRYZUhmMDGQwtGJYdpEbYzYY2wJDRmwpDAtjNhkoDaRmw7YlpRgxtgSGM2ESGFpGTGUBtKM2GNoxtIzYdpAZUZsIkMC0YzYdoxLaMmW9gNsZsecjPLRGY23bXGQ0ctQai2WY0BqZYLDMaIzGKuMxoDUGosMqQzGBjIYWjEsO0iNsZsMbSBIaM2FIYFsZsMkQG0jFhlpEtKMmNsCQxmwiQwtIyZKA2lGbDLRjaMZsO2AyozYQyIWjGbDt7Etoy80GoNAZjbdhcZ5aIzGKuMho5ag1FssxoDUywWGY0RmMVcZjQGoNRYZUhmMDGQwtIlh2kRtjNhjaQJDRmwpDAtjNhkoDaMZsMtI2lGDG2BIYzYRIYWkZpkoDaUZsMtGNoxmw7YDKjNhDKFsZx5iMxoDUGrqrDUGgMxqq4zy0RmMVcZDRy1BqLZZjQGplgsMxojMYq4zGgNQaiwypDMYGMhhaMSw7SI2xmwxtIEhozYUhgWxmwxlAbSM2GWkbSjBjbAkMZsIkMLSMmSgNpRmwxtGNpGbDtgMu0ZseWDMaIzGrprjMaA1BgsNQaAzGqrjPLRGYxVhmNHLMYL5ZjQGplqLDMaIzGKuMxoDUGosMqQzGBjIYWjEsO0iNsZsMbRgSGjNhSGBbGbDGUBtGM2GWkbSjBjaQJDGbCJDAtIzhkoDaUZsMbextjOPKBqDQGY0dFcZjRGY1FhqDQGYwXGoNAZjVVxnlojMYqwzGjlmMF8sxoDUy1FhmNEZjFXGY0BqDUWGVIZjAxkMLRiWHaRG2M2GNpAkNGbCkMC2M2GMoDaMZsMtI20YMbSBIYzYRIYFsZMtiNtEx5LlmNAamWj2rDUGgMxirjMaIzGosNQaAzGC41BoDMaquM8tEZjFWGY0csxqL5ZjQGplgsMxojMYq4zGgNQaiwypDMYGMhhaMSw7SI2xmwxtIEhozYUhgWxmwxkQG0YzYZaRtKMGNpAtGM2GS7AtjLyHLMaIzy2HsXyzGgNTLUWGoNAZjBcZjRGY1VYag0BmMFxqDQGY1VcZ5aIzGKsMxo5ZjUXyzGgNTLBYZjRGYxVxmNAag1FhlSGYwMZDC0Ylh2kRtjNhjbAkNGbCkMC2M2GMiA2jGbDtI2lGCGUC2M2PHhmNEZjYelbLMaIzyxV8sxoDPLUXGoNAZjBfLMaA1MtVWGoNAZjBcZ5aIzGqrjPLQGoMVYZjRyzGovlmNAamWCwzGiMxirjMaA1BqLDKkMxgYyGFoxLDtIjbGbDG0gSGjNhSGBbGbDGUBtGM2HbG2jDxkag0BmNh91xkNIZjBbLMaA1MsVbLUGgM8tRcZjRGYwXyzGgNTLVVhqDQGYwXGeWiMxqq4zy0BqDFWGY0csxqL5ZjQGplgsMxojMYq4zGgNQaiwypDMYGMhhaRLDtIjbGbDG0gSGjNhSGBbGbDGUBt7GbHiwzGy6+Tag1BuuqpjIbboHlmN10U8tQbrqhjMbroqmWY3XVDGoN10UxmNt1QxnluuimMxuuqKZZjddAxmNt0UxmN11QxlddBoyG66JW2l10ZpDaXXUYrbbboy/9k='); background-repeat: no-repeat; background-size: cover;">
+	<h6 align="center"></h6>
+	
+<div class="login">
+	    	<h6 align="center">MONTHLY EXPENSE TRACKER</h6>
+
+    <div class="col l6 s10 offset-l3 offset-s1 card-panel blue-grey lighten-5" style="margin-top:1rem;">
+	    <div class="row">
+	     	<div class="col s10 offset-s1 center">
+	     			<h5 class="cyan-text text-darken-4">FAMILY/MEMBER LOGIN</h5>
+	     	</div>
+	     	<form action="{{url_for('login')}}" method="post">
+	     		<div class="input-field col s10 offset-s1" style="margin-top:1rem; margin-left: 0em; margin-bottom: 0;">
+		          <i class="material-icons prefix">email</i>
+		          <input id="login_email" type="text" class="validate" name="username">
+		          <label for="login_email">Email</label>
+		      </div>
+
+		      <div class="input-field col s10 offset-s1" style="margin-top:1rem; margin-left: 0em; margin-bottom: 0;">
+			          <i class="material-icons prefix">lock</i>
+			          <input id="login_password" type="password" class="validate" name="password">
+			          <label for="login_password">Password</label>
+		      </div>
+
+		      <div class="input-field col s10 offset-s1" style="margin-top:1rem; margin-left: 0em; margin-bottom: 0;">
+		      		<i class="material-icons prefix">account_circle</i>
+					    <select name='cat' required>
+					      <option value="" disabled selected>Choose Role</option>
+					      <option value="family">family</option>
+					      <option value="member">member</option>
+					    </select>
+					</div>
+	      	<div class="col s10 offset-s1 center" style="margin-bottom: 1rem; margin-top: 1rem;">
+	        	<button class="signin" type="submit" style="width:100%;">LOGIN</button>        	
+	        </div>
+      	</form>
+        <div class="col s5 offset-s1" style="padding-right:0;">
+        	<span class="right">Not a member?</span>
+    		</div>
+
+       	<div class="col s5" style="padding-left: 0;">
+        	<a class="modal-trigger" href="#modal1">Signup</a>
+        </div>
+    	</div>
+    </div>    
+</div>
+
+
+  <div id="modal1" class="modal" >
+  	<form action="{{url_for('familyReg')}}" method="post" name="form1" onsubmit ="return matchPassword()" enctype="multipart/form-data">
+    	<div class="modal-content" style="padding-top: 1rem; padding-bottom: 0;">
+    		<div class="row">
+    			<div class="col s12 center" style="margin:0; padding-top: 0;">
+    				<h5 class="cyan-text text-darken-4" style="margin-top:0;">FAMILY REGISTRATION</h5>
+    			</div>
+    			<div class="input-field col s12" style="margin:0.2rem;">
+		          <i class="material-icons prefix">account_circle</i>
+		          <input id="family_name" type="text" class="validate" pattern="[a-zA-Z\s]+"  title="Enter correct name" name='name' required>
+		          <label for="family_name">Name</label>
+	        </div>
+	        <div class="input-field col s12" style="margin:0.2rem;">
+		          <i class="material-icons prefix">email</i>
+		          <input id="family_email" type="email" class="validate" name="email" required>
+		          <label for="family_email">Email</label>
+	        </div>
+	        <div class="input-field col s12" style="margin:0.2rem;">
+		          <i class="material-icons prefix">password</i>
+		          <input id="family_password" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).[^\s]{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="validate" name="password" required>
+		          <label for="family_password">Password</label>
+	        </div>
+	        <div class="input-field col s12" style="margin:0.2rem;">
+		          <i class="material-icons prefix">password</i>
+		          <input id="family_password1" type="password" name="password1" autocomplete="off" required>
+		          <label for="family_password1">Confirm Password</label>
+	        </div>
+	         <div class="input-field col s12" style="margin:0.2rem;">
+		          <i class="material-icons prefix">location_city</i>
+		          <input id="family_city" type="text" class="validate" name="city" required>
+		          <label for="family_city">City</label>
+	        </div>
+			    <div class="input-field col s12" style="margin:0;">
+			      <i class="material-icons prefix">place</i>
+		          <textarea id="family_address" class="materialize-textarea" name="address" required></textarea>
+		          <label for="family_address">Address</label>
+		      </div>
+    	</div>
+    </div>
+    <div class="modal-footer" style="padding-top:0; padding-right: .5rem;">
+      <button class="btn green darken-4">REGISTER</button>
+    </div>
+  </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript">
+	  	document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.modal');
+	    var instances = M.Modal.init(elems);
+	  });
+	</script>  
+
+	<script type="text/javascript">
+	  	document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(elems);
+	  });
+	</script>   
+
+</body>
+</html>

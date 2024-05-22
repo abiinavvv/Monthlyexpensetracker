@@ -1,0 +1,55 @@
+.brand-title-l{
+	padding-left: 1rem !important;
+	font-size: 2rem !important ;
+}
+
+.brand-title-m{
+	font-size: 1.3rem !important ;
+}
+
+.nav-item{
+	font-size: 1.3rem;
+}
+i{
+	color: #006064;
+}
+
+.login {
+  position: relative;
+  height: 660px;
+  width: 405px;
+  margin: auto;
+  padding: 60px 60px;
+  background: url(https://img.freepik.com/free-vector/pastel-ombre-background-pink-purple_53876-120750.jpg) no-repeat   center center #505050;   
+  background-size: cover;
+  box-shadow: 0px 30px 60px -5px #000;
+}
+form {
+  padding-top: 80px;
+}
+h5 {
+  padding-left: 12px;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-weight: 100;
+}
+
+h6
+{
+	  font-size: 22px;
+color: purple;
+}
+
+.signin {
+ background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

@@ -1,0 +1,88 @@
+{% extends "layout_member.html" %}
+{%block content%}
+
+<div class="row" style="margin-bottom:0;">
+	<div class="col s12 center">
+		<h5 class="cyan-text text-darken-4" style="font-weight: 600; text-decoration: underline;">FAMILY SPECIAL EXPENSES</h5>
+	</div>
+	<div class="col s10 offset-s1">
+		<ul class="tabs">
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#special-expense">SPECIAL EXPENSES</a></li>
+			<li class="tab col s6"><a class="cyan-text text-darken-4" href="#add-expenses">ADD SPECIAL EXPENSES</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="col s12" id="add-expenses">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<div class="card-panel grey lighten-2" style="background-image: url('https://img.freepik.com/free-photo/blue-bokeh-textured-plain-product-background_53876-102475.jpg?w=2000'); background-repeat: no-repeat; background-size: cover;">
+				<div class="row">
+					<div class="col s12 center-align">
+						<h5 class='cyan-text text-darken-4' style="text-decoration: underline; font-weight: bold;">ADD SPECIAL EXPENSE</h5>
+					</div>
+					<form action="{{url_for('famSpecialExpenseReg')}}" method="post" enctype="multipart/form-data">
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">edit</i>
+							<input type="text" name="name" id='exp-name' class="validate" required>
+							<label for="exp-name">Name</label>
+						</div>
+						<div class="input-field col s12">
+				        	<i class="material-icons prefix">calendar_month</i>
+				        	<input id="exp-date" type="text" class="validate datepicker dp-exp" name='dueDate' required>
+				        	<label for="exp-date">Due Date</label>
+				        </div>
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">123</i>
+							<input type="text" name="amount" id='exp-amount' class="validate" required>
+							<label for="exp-amount">Amount</label>
+						</div>
+						<div class="col s12 center-align">
+							<input type="submit" name="" value='ADD EXPENSE' class="btn cyan darken-4">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="special-expense">
+	<div class="row">
+		{% for i in famSpecialExpense %}
+			<div class="card-panel col s5" style="margin-left: 5rem;">
+				<div class="row" style="margin-bottom:.6rem;">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{url_for('static', filename='images/expenses.png')}}" style="width: 3.5rem; height: 3.5rem;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-left: .5rem;" class="cyan-text  text-darken-4">{{famSpecialExpense[i]['name']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="text-transform: capitalize; margin-bottom: 0;"><span style="font-weight:bold;">Due Date : </span>{{famSpecialExpense[i]['dueDate']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0;"><span style="font-weight:bold;">Amount : </span>{{famSpecialExpense[i]['amount']}}/-</p>
+					</div>
+					<div class="col s12">
+						<p style="text-transform: capitalize; margin-top: 0; font-weight: bold;">Added By : <span class="cyan-text text-darken-4">{{famSpecialExpense[i]['memberDetails']['name']}}</span></p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s4" style="margin-top:.5rem;">
+						<a href=""><span class="orange-text">EDIT</span></a>
+					</div>
+					<div class="col s4 center" style="margin-top:.5rem;">
+						<a href=""><span class="orange-text">DELETE</span></a>
+					</div>
+					<div class="col s4 right-align" style="margin-top:.5rem;">
+						<a href=""><span class="orange-text">MORE DETAILS</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}
